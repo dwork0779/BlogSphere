@@ -174,3 +174,4 @@ curl "http://localhost:8080/api/posts?search=markdown"
 ```
 
 If you want, I can also give you a ready-made `.env` example and a sample `curl` workflow for signup, login, and creating a post.If you want, I can also give you a ready-made `.env` example and a sample `curl` workflow for signup, login, and creating a post.
+abcd
