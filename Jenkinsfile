@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "divyach2002/my-app"
+        IMAGE_NAME = "cparanjpe/blog-backend"
         IMAGE_TAG = "latest"
     }
 
@@ -15,7 +15,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/dwork0779/BlogSphere.git'
+                    url: 'https://github.com/cparanjpe/blogshpere.git'
             }
         }
 
