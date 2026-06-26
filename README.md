@@ -1,4 +1,4 @@
-# BlogSphere Backend
+### BlogSphere Backend
 
 This project is the Spring Boot backend for **BlogSphere**.
 
