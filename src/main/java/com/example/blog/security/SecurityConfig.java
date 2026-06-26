@@ -14,7 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration; 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import java.util.List; 
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableMethodSecurity
@@ -26,6 +29,7 @@ public class SecurityConfig {
 			JwtAuthenticationFilter jwtAuthenticationFilter,
 			AuthenticationProvider authenticationProvider) throws Exception {
 		return http
+				.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.csrf(AbstractHttpConfigurer::disable)
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(auth -> auth
@@ -35,6 +39,19 @@ public class SecurityConfig {
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 				.build();
+	}
+
+	@Bean
+	public UrlBasedCorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOriginPatterns(List.of("*")); // Allows any origin
+		configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")); // Allows all HTTP methods
+		configuration.setAllowedHeaders(List.of("*")); // Allows all HTTP headers
+		configuration.setAllowCredentials(true); // Allows cookies, auth headers, or session-based requests
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration); // Applies to all backend paths
+		return source;
 	}
 
 	@Bean
