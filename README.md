@@ -73,6 +73,10 @@ ngrok will generate a public URL similar to:
 ```
 https://xxxxxxxx.ngrok-free.dev
 ```
+If ngrok link changes update link at 2 places
+- For backend to work update in *the-daily-post* repo in src/lib/api.ts update BASE_URL. Then commit changes and login to lovable and publish changes for it reflect
+- in blogsphere repo settings->webhook update url with '/github-webhook/' compulsorily in the end
+
 
 ---
 
